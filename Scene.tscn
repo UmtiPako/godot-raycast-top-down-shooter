@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://ysqf37acjomi"]
+
+[ext_resource type="Texture2D" uid="uid://c3he8gy6m8yi1" path="res://Assets/white_sq.png" id="1_aww5n"]
+[ext_resource type="PackedScene" uid="uid://cdcf0tuf1scuj" path="res://Player/player.tscn" id="2_biiee"]
+[ext_resource type="PackedScene" uid="uid://cxds51nhs474x" path="res://Box/box.tscn" id="3_4bkal"]
+
+[node name="World" type="Node2D"]
+position = Vector2(374, 398)
+
+[node name="Player" parent="." instance=ExtResource("2_biiee")]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Floor" type="Sprite2D" parent="Environment"]
+modulate = Color(0.87451, 0.788235, 0.819608, 1)
+z_index = -2
+position = Vector2(527, 431)
+scale = Vector2(67.1094, 37.2188)
+texture = ExtResource("1_aww5n")
+
+[node name="Box" parent="Environment" instance=ExtResource("3_4bkal")]
+position = Vector2(264, 248)
+
+[node name="Box2" parent="Environment" instance=ExtResource("3_4bkal")]
+position = Vector2(144, 94)
+
+[node name="Box3" parent="Environment" instance=ExtResource("3_4bkal")]
+position = Vector2(164, 470)
+
+[node name="Box4" parent="Environment" instance=ExtResource("3_4bkal")]
+position = Vector2(764, 420)
+
+[node name="Box5" parent="Environment" instance=ExtResource("3_4bkal")]
+position = Vector2(614, 182)

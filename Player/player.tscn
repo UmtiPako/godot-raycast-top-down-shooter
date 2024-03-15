@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdcf0tuf1scuj"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_65qhb"]
+[ext_resource type="Texture2D" uid="uid://dr31n5xcvapev" path="res://Assets/shooter.png" id="1_xgawn"]
+[ext_resource type="AudioStream" uid="uid://dr0ksux383mg3" path="res://Assets/death_noise1.wav" id="2_caclp"]
+[ext_resource type="AudioStream" uid="uid://c8g048pr0e5md" path="res://Assets/shotgun_shot1.wav" id="3_k3xvm"]
+[ext_resource type="Texture2D" uid="uid://dc6uk1kvtky25" path="res://Assets/muzzle_flash.png" id="4_yj636"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4idyd"]
+radius = 30.0666
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_65qhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 11)
+shape = SubResource("CircleShape2D_4idyd")
+
+[node name="Player_Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_xgawn")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -1000)
+collision_mask = 3
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_caclp")
+volume_db = -8.432
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k3xvm")
+
+[node name="MuzzleFlash" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.788235, 0, 1)
+position = Vector2(1, -67)
+texture = ExtResource("4_yj636")
+
+[node name="Timer" type="Timer" parent="MuzzleFlash"]
+wait_time = 0.05
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
